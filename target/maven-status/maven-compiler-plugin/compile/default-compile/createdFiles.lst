@@ -1,0 +1,12 @@
+meetingroom\Removed.class
+meetingroom\external\ReservationService.class
+meetingroom\external\Reservation.class
+meetingroom\config\kafka\KafkaProcessor.class
+meetingroom\EnrollmentController.class
+meetingroom\PolicyHandler.class
+meetingroom\Reserved.class
+meetingroom\EnrollmentRepository.class
+meetingroom\Registered.class
+meetingroom\Enrollment.class
+meetingroom\AbstractEvent.class
+meetingroom\Application.class
