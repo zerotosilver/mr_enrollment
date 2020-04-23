@@ -13,19 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class PolicyHandler {
 
-    @Autowired
-   EnrollmentRepository enrollmentRepository;
-
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverReserved_ChangeMeetingRoomStatus(@Payload Reserved reserved) {
-        try {
-            if (reserved.isMe()) {
-                System.out.println("##### listener ChangeMeetingRoomStatus : " + reserved.toJson());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (reserved.isMe()) {
+            System.out.println("##### listener ChangeMeetingRoomStatus : " + reserved.toJson());
         }
     }
+
 
 
 }

@@ -69,4 +69,4 @@ spring:
 
 api:
   url:
-    reserve: http://reserve:8080
+    reserve: http://Reserve:8080

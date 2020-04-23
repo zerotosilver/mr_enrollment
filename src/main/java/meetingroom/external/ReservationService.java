@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by uengine on 2018. 11. 21..
  */
 
-@FeignClient(name="reserve", url="${api.url.reserve}")
+@FeignClient(name="Reserve", url="${api.url.reserve}")
 public interface ReservationService {
 
     @RequestMapping(method= RequestMethod.POST, path="/reservations")

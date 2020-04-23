@@ -1,14 +1,9 @@
 package meetingroom;
 
-import javax.persistence.*;
-
-import meetingroom.config.kafka.KafkaProcessor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.messaging.handler.annotation.Payload;
 
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Enrollment_table")
@@ -19,9 +14,6 @@ public class Enrollment {
     private Long id;
     private Integer roomNo;
     private String roomPlace;
-
-    @Autowired
-    EnrollmentRepository enrollmentRepository;
 
     @PostPersist
     public void onPostPersist(){
@@ -34,6 +26,8 @@ public class Enrollment {
 
         meetingroom.external.Reservation reservation = new meetingroom.external.Reservation();
         // mappings goes here
+        reservation.setRoomNo(registered.getRoomNo());
+        reservation.setRoomPlace(registered.getRoomPlace());
         Application.applicationContext.getBean(meetingroom.external.ReservationService.class)
             .reserve(reservation);
     }
@@ -43,30 +37,7 @@ public class Enrollment {
         Removed removed = new Removed();
         BeanUtils.copyProperties(this, removed);
         removed.publish();
-
-
     }
-
-    /*
-    @StreamListener(KafkaProcessor.INPUT)
-    public void onEvent(@Payload Registered registered) {
-        try {
-
-             //회의실 등록이 발생시, 회의실을 등록한다.
-
-            if (registered.isMe()) {
-                System.out.println("##### 회의실 등록 : " + registered.toJson());
-                Enrollment enrollment = new Enrollment();
-                enrollment.setRoomNo(registered.getRoomNo());
-                enrollmentRepository.save(enrollment);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    */
-
-
 
     public Long getId() {
         return id;
@@ -87,8 +58,4 @@ public class Enrollment {
     public void setRoomPlace(String roomPlace) {
         this.roomPlace = roomPlace;
     }
-
-
-
-
 }

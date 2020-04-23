@@ -9,18 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
- @RestController
- public class EnrollmentController {
+@RestController
+public class EnrollmentController {
 
-     /*
+ }
+
+ /*
+
+
 @RequestMapping(value = "/",
         method = RequestMethod.GET,
         produces = "application/json;charset=UTF-8")
-*/
+
 
 public void register(HttpServletRequest request, HttpServletResponse response)
         throws Exception {
         System.out.println("##### /enrollment/register  called #####");
         }
-
- }
+  */
